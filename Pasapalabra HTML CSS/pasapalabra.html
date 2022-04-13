@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="pasapalabra.css">
+    <script type="text/javascript" src="pasapalabrahtml.js"></script>
+    <title>Pasapalabra</title>
+</head>
+
+<body>
+    <div id="All">
+        <img id="imgPasapalbra" src="pasapalabra_f703.png">
+        <div id="Menu" style="display: block;">
+            <div id="Presentation">
+                <p>Bienvenido al Pasapalabra de Skylab Coders Academy!</p>
+                <p>Deberas acertar la palabra correspondiente a la letra que toque en funcion de la definicion que se te
+                    mostrara, en caso de no saber la palabra puedes usar PASAPALABRA para pasar a la siguiente letra.
+                </p>
+                <p>Por cada palabra correcta se te sumara un punto.</p>
+                <p>Buena suerte!</p>
+            </div>
+            <div class="container">
+                <div class="group">
+                    <input autocomplete="off" class="asd" id="name" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label class="labelFancy">Introduce tu nombre:</label>
+                </div>
+            </div>
+            <button class="button" id="play" onclick="play()">JUGAR</button>
+            <button class="button" id="showRankingMenu" onclick="showRanking()">Mostrar Ranking</button>
+        </div>
+
+        <div id="Rosco" style="display: none;">
+            <div class="circle-container">
+                <div id="Questions">
+                    <p id="letterQuestion"></p>
+                    <p id="defQuestion"></p>
+                </div>
+
+                <p class="dot tick" id="letter0">A</p>
+                <p class="dot tick" id="letter1">B</p>
+                <p class="dot tick" id="letter2">C</p>
+                <p class="dot tick" id="letter3">D</p>
+                <p class="dot tick" id="letter4">E</p>
+                <p class="dot tick" id="letter5">F</p>
+                <p class="dot tick" id="letter6">G</p>
+                <p class="dot tick" id="letter7">H</p>
+                <p class="dot tick" id="letter8">I</p>
+                <p class="dot tick" id="letter9">J</p>
+                <p class="dot tick" id="letter10">K</p>
+                <p class="dot tick" id="letter11">L</p>
+                <p class="dot tick" id="letter12">M</p>
+                <p class="dot tick" id="letter13">N</p>
+                <p class="dot tick" id="letter14">Ñ</p>
+                <p class="dot tick" id="letter15">O</p>
+                <p class="dot tick" id="letter16">P</p>
+                <p class="dot tick" id="letter17">Q</p>
+                <p class="dot tick" id="letter18">R</p>
+                <p class="dot tick" id="letter19">S</p>
+                <p class="dot tick" id="letter20">T</p>
+                <p class="dot tick" id="letter21">U</p>
+                <p class="dot tick" id="letter22">V</p>
+                <p class="dot tick" id="letter23">W</p>
+                <p class="dot tick" id="letter24">X</p>
+                <p class="dot tick" id="letter25">Y</p>
+                <p class="dot tick" id="letter26">Z</p>
+            </div>
+
+            <span id="gameButtons" style="display: block;">
+                <div class="container">
+                    <div class="group">
+                        <input autocomplete="off" class="asd" id="answer" type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="labelFancy">Respuesta:</label>
+                    </div>
+                    <input class="button" id="send" type="button" onclick="getAnswer()" value="Enviar">
+                    <input class="button" id="passButton" type="button" onclick="pasapalabra()" value="Pasapalabra">
+                    <input class="button" id="endButton" type="button" onclick="endGame()" value="Finalizar Juego">
+                </div>
+            </span>
+
+            <span id="endButtons" style="display: none;">
+                <button class="button" id="playAgain" onclick="reset()">VOLVER A JUGAR</button>
+                <button class="button" id="showRankingEndGame" onclick="showRanking()">Mostrar Ranking</button>
+            </span>
+            <br>
+            <br>
+            <br>
+            <span class="cajaDiv">
+                <label>Aciertos: </label>
+                <label id="points"></label>
+            </span>
+            <span class="cajaDiv">
+                <label>Tiempo:</label>
+                <label id="CountDown">150</label>
+            </span>
+
+        </div>
+
+        <div id="ShowRanking" style="display: none;">
+            <table id="TableRanking" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th>Jugador:</th>
+                    <th>Puntos:</th>
+                </tr>
+            </table>
+            <input class="button" type="button" onclick="reset()" value="Atras">
+        </div>
+    </div>
+</body>
+
+</html>
