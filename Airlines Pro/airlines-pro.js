@@ -28,20 +28,19 @@ let flights = [
 function pedirNombre(name) {
 
     if (name !== null && name !== '') {
-        const nombre = name[0].toUpperCase() + name.slice(1);;
+        const nombre = name[0].toUpperCase() + name.slice(1);
         return nombre
     } 
     return "anonimo"
-    }
 }
 
 function costeMedio() {
     let costeTotal = 0;
     for (let i = 0; i < flights.length; i++) {
-        costeTotal += flights[i]['cost'];
+        costeTotal += flights[i].cost;
     }
-    costeMedio = (costeTotal / flights.length).toFixed(2);
-    console.log(`El coste medio del coste de los vuelos es ${costeMedio}.`);
+    const costeMedioVuelos = (costeTotal / flights.length).toFixed(2);
+    return costeMedioVuelos
 }
 
 
@@ -49,34 +48,27 @@ function costeMedio() {
 function cuantosEscalas() {
     let escalas = 0;
     for (let i = 0; i < flights.length; i++) {
-        if (flights[i]['scale'] === true) {
+        if (flights[i].scale === true) {
             escalas += 1;
         }
     }
-    console.log(`Hay ${escalas} vuelos que tienen escalas.`);
-}
-
-function ultimos5Destinos() {
-    console.log(`Los últimos 5 destinos para el día de hoy son: ${flights[flights.length - 5]['to']}, ${flights[flights.length - 4]['to']}, ${flights[flights.length - 3]['to']}, ${flights[flights.length - 2]['to']} y ${flights[flights.length - 1]['to']}`);
+    return escalas
 }
 
 
 
-function preguntarRol() {
-    let rol = prompt('Escriba su rol (user o admin)')
+function preguntarRol(rol) {
     if (rol === null) {
         preguntarRol();
     } else if (rol.toUpperCase() !== "USER" && rol.toUpperCase() !== "ADMIN") {
         preguntarRol();
     } else {
         return rol.toUpperCase();
-    }
 }
 
 
 
-function preguntarAccion() {
-    const accion = prompt('Qué quieres hacer? (crear/eliminar)\nPulse cancelar para salir.');
+function preguntarAccion(accion) {
     if (accion !== null) {
         if (accion.toUpperCase() !== "CREAR" && accion.toUpperCase() !== "ELIMINAR") {
             preguntarAccion();
@@ -84,44 +76,37 @@ function preguntarAccion() {
             return accion.toUpperCase();
         }
     } else {
-        alert('Sesión cerrada. Hasta pronto!');
         return accion;
     }
 }
 
 
-function accionesAdmin() {
+function accionesAdmin(to, from, cost, scale,idABorrar) {
     const accionPreguntada = preguntarAccion();
     if (accionPreguntada !== null) {
         if (accionPreguntada === "CREAR") {
             if (flights.length < 15) {
                 const newFlight = {};
-                newFlight.to = prompt("Destino:");
-                newFlight.from = prompt("Origen:");
-                newFlight.cost = prompt("Coste:");
-                newFlight.scale = prompt("Escala:");
-                while (newFlight.scale === true || newFlight.scale === false) {
-                    newFlight.scale = prompt("Escala:")
-                }
-                newFlight.id = flights[flights.length - 1]['id'] + 1;
+                newFlight.to = to;
+                newFlight.from = from;
+                newFlight.cost = cost;
+                newFlight.scale = scale;
+                newFlight.id = flights[flights.length - 1].id + 1;
                 flights.push(newFlight);
-            } else {
-                alert('Límite de vuelos alcanzada, no puede introducir más vuelos!')
-            }
+            } 
             mostrarVuelos();
         } else if (accionPreguntada === 'ELIMINAR') {
-            const idABorrar = prompt("Id a borrar:");
             let longitudFlights = flights.length
             for (let i = 0; i < longitudFlights; i++) {
-                if (flights[i]['id'] == idABorrar) {
+                if (flights[i].id === idABorrar) {
                     flights.splice(i, 1);
                     longitudFlights--
                 }
             }
-            mostrarVuelos();
-        }
+           
         accionesAdmin()
     }
+}
 }
 
 
@@ -188,5 +173,3 @@ function funcionesRoles() {
 
 
 funcionesRoles();
-
-
