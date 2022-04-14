@@ -22,16 +22,6 @@ const flights = [
   { id: 10, to: "Tel-Aviv", from: "Madrid", cost: 150, scale: false },
 ];
 
-function pedirNombre(name) {
-  let nombre = name[0].toUpperCase() + name.slice(1);
-
-  if (name !== null && name !== "") {
-    return nombre;
-  }
-  nombre = "anonimo";
-  return nombre;
-}
-
 function costeMedio() {
   let costeTotal = 0;
   for (let i = 0; i < 10; i++) {
@@ -41,26 +31,26 @@ function costeMedio() {
   return costeMedioVuelos;
 }
 
-function cuantosEscalas() {
-  let escalas = 0;
-  for (let i = 0; i < 10; i++) {
-    if (flights[i].scale === true) {
-      escalas += 1;
-    }
-  }
-  return escalas
-}
+describe("Given the costeMedio function", () => {
+  describe("When it receives an array of 3 objects with cost property 300, 400, 500", () => {
+    test("Then it should return 400", () => {
+      const flights = [{ cost: 300 }, { cost: 400 }, { cost: 500 }];
+      const expectedResult = 400;
 
-function ultimos5Destinos() {
-  const ultimos5Vuelos = flights.slice(-5);
-  let cincoDestinos;
-  ultimos5Vuelos.forEach(vuelo => {
-    ultimos5Destinos.push(vuelo.to)
+      const result = costeMedio(flights);
+
+      expect(result).toBe(expectedResult);
+    });
   });
-  return cincoDestinos;
-}
 
-pedirNombre();
-costeMedio();
-cuantosEscalas();
-ultimos5Destinos();
+  describe("When it receives an array of objects with all cost property 0", () => {
+    test("Then it should return 0", () => {
+      const flights = [{ cost: 0 }, { cost: 0 }, { cost: 0 }];
+      const expectedResult = 0;
+
+      const result = costeMedio(flights);
+
+      expect(result).toBe(expectedResult);
+    });
+  });
+});
